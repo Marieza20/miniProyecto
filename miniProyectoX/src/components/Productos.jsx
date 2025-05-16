@@ -72,9 +72,15 @@ function Productos() {
             cantidad: cantidadProducto,
             categoria: categoriaProducto
         }
+
         const respuestaServer = await llamadosProductos.postProductos(obj)
         const datos = await llamadosProductos.getProductos()
         setProductos(datos)
+
+        SetNombreProducto('');
+        SetPrecioProducto('');
+        SetCantidadProducto('');
+        SetCategoriaProducto('');
     }
   
     async function eliminar(id) {
@@ -155,7 +161,7 @@ function Productos() {
 
 
         {productos.map((producto,index) =>(
-        <li key={index}>
+        <div key={index}>
             {editandoId === producto.id && (
             <div className="mostrar">
                 <input onChange={nombreEdit} value={nombreProductoEdit} type="text" />
@@ -171,7 +177,7 @@ function Productos() {
                 <input onClick={e=>cancelarEdit(producto.id)} type="button" value="Cancelar" />
             </div>
             )}
-        </li>
+        </div>
         ))}
     </div>
   )

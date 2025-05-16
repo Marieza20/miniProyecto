@@ -32,9 +32,11 @@ function Categorias() {
         const obj ={
             nombre: nombreCategoria
         }
-        const respuestaServer = await llamadosCategorias.postCategorias(obj)
+
+        await llamadosCategorias.postCategorias(obj)
         const datos = await llamadosCategorias.getCategorias()
         setCategorias(datos)
+        SetNombreCategoria('');
     }
 
     async function eliminarC(id) {
@@ -90,7 +92,7 @@ function Categorias() {
             </table>
 
             {categorias.map((categoria,index) =>(
-            <li key={index}>
+            <div key={index}>
                 {editandoId === categoria.id && (
                 <div className="mostrar">
                     <input onChange={nombreCEdit} value={nombreCategoriaEdit} type="text" />
@@ -98,7 +100,7 @@ function Categorias() {
                     <input onClick={e=>cancelarEditC(categoria.id)} type="button" value="Cancelar" />
                 </div>
                 )}
-            </li>
+            </div>
             ))}
         </div>
     )
